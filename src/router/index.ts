@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
-
+import AuthCallback from '../components/AuthCallback.vue'
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
@@ -9,6 +9,11 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/callback',
+    name: 'callback',
+    component: AuthCallback
   },
   {
     path: '/about',
@@ -21,6 +26,7 @@ const routes: Array<RouteConfig> = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 

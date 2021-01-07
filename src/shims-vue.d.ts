@@ -1,4 +1,12 @@
+import Vue from 'vue'
+import { AxiosInstance } from 'axios';
+
+declare module 'vue/types/vue' {
+    interface Vue {
+        $axios: AxiosInstance;
+    }
+}
+
 declare module '*.vue' {
-  import Vue from 'vue'
-  export default Vue
+    export default Vue
 }
