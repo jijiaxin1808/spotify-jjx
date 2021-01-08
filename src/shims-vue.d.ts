@@ -9,12 +9,8 @@ declare module 'vue/types/vue' {
 
 declare global {
     interface Window {
-        jjxTest: string,
         onSpotifyWebPlaybackSDKReady: any,
         Spotify: any
-    }
-    interface res {
-        deviceId: string
     }
 }
 
