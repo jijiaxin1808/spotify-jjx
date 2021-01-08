@@ -7,6 +7,15 @@ declare module 'vue/types/vue' {
     }
 }
 
-declare module '*.vue' {
-    export default Vue
+declare global {
+    interface Window {
+        jjxTest: string,
+        onSpotifyWebPlaybackSDKReady: any,
+        Spotify: any
+    }
+    interface res {
+        deviceId: string
+    }
 }
+
+
