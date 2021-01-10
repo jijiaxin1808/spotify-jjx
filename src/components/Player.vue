@@ -21,8 +21,15 @@
         </div>
         <div class="mid-bar">
           <button @click="handlePlayBtn">{{playBenText}}</button>
-          <div>{{handlePlayTime(position)}}</div>
-          <div>{{handlePlayTime(duration)}}</div>
+          <div>
+            <ProgressBar
+              :onChange="changePosition"
+              :position="playBarPosition"
+              :isShowInfo="true"
+              :infoType="'time'"
+              :currposition="position"
+              :duration="duration"/>
+          </div>
         </div>
       </div>
   </div>
@@ -33,6 +40,8 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { getAccessToken } from '../utils/access'
 import { debounce } from '../utils/debounce'
 import { handlePlayTime } from '../utils/index'
+import ProgressBar from './ProgressBar.vue'
+
 interface PlayerResponce {
   device_id: string;
 }
@@ -43,7 +52,11 @@ interface StyleElement extends Element {
   style: any;
 }
 
-@Component
+@Component({
+  components: {
+    ProgressBar
+  }
+})
 export default class Player extends Vue {
   public player: any = null;
   public loaded = false;
@@ -52,9 +65,15 @@ export default class Player extends Vue {
   public position = 0;
   public duration = 0;
   public userPosition = 0;
+  public log = false
   handlePlayTime = handlePlayTime
   get playBenText () {
     return this.paused ? '播放' : '暂停'
+  }
+
+  get playBarPosition () {
+    console.log(this.position, this.duration)
+    return this.position / (this.duration | 1)
   }
 
   paused = false
@@ -91,7 +110,7 @@ export default class Player extends Vue {
   getState () {
     if (!this.loaded) return null
     this.player.getCurrentState().then((state: any) => {
-      console.log(state)
+      this.log && console.log(state)
       if (!state) return
 
       this.paused = state.paused
@@ -109,9 +128,9 @@ export default class Player extends Vue {
   }
 
   @Watch('userPosition')
-  setPosition () {
-    console.log(this.userPosition * this.duration * 0.01)
-    this.player.seek(this.userPosition * this.duration * 0.01)
+  setPosition (position: number) {
+    position = position || this.position
+    this.player.seek(position * this.duration * 0.01)
   }
 
   debouncedSetvol = debounce((player, volume) => {
@@ -169,6 +188,11 @@ export default class Player extends Vue {
       console.log('resume!')
       this.paused = false
     })
+  }
+
+  changePosition (position: number) {
+    // console.log('cb-position', position)
+    this.setPosition(position * 100)
   }
 }
 </script>
@@ -233,5 +257,9 @@ export default class Player extends Vue {
   left: 0;
   height: 0;
   transition: 150ms;
+}
+.mid-bar {
+  display: flex;
+  flex-direction: column;
 }
 </style>
