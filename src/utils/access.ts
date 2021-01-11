@@ -15,5 +15,5 @@ export function setMeInfo (info: any) {
 }
 
 export function getMeinfo () {
-  return localStorage.getItem('spotify_me_info')
+  return JSON.parse(localStorage.getItem('spotify_me_info') as string)
 }

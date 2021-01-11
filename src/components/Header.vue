@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { setMeInfo } from '../utils/access'
+import { getMeinfo } from '../utils/access'
 import Search from './Search.vue'
 @Component({
   components: {
@@ -22,12 +22,7 @@ export default class Header extends Vue {
   title = 'spotify@jjx'
   currtUser = ''
   created () {
-    this.$axios.get('https://api.spotify.com/v1/me').then(res => {
-      if (res.status === 200) {
-        setMeInfo(res.data)
-        this.currtUser = res.data.display_name
-      }
-    })
+    this.currtUser = getMeinfo().display_name
   }
 
   logOut () {
