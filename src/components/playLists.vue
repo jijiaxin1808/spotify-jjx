@@ -1,7 +1,7 @@
 <template>
   <div class="play-lists">
     <template v-for="playList in playLists">
-      <div :key="playList.name" @click="toPlayList(playList.id)">{{playList.name}}</div>
+      <div class="play-list" :key="playList.name" @click="toPlayList(playList.id)">{{playList.name}}</div>
     </template>
   </div>
 </template>
@@ -29,17 +29,28 @@ export default class PlayLists extends Vue {
     })
   }
 
-  toPlayList (id) {
+  toPlayList (id: string) {
     console.log(id)
+    this.$router.push({ path: `/playlist/${id}` })
   }
 }
 </script>
 <style lang="less" scoped>
-.header {
-  display: flex;
-  justify-content: space-between;
+.play-lists {
+  width: 250px;
+  height: 800px;
+  overflow: auto;
+  background-color: #222326;
 }
-.log-out {
+div {
+  color: white;
+}
+.play-list {
+  width:250px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
   cursor: pointer;
+  margin: 5px 0;
 }
 </style>

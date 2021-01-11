@@ -35,6 +35,10 @@ export default class Header extends Vue {
 .header {
   display: flex;
   justify-content: space-between;
+  background-color: #222326;
+  color: white;
+  height: 40px;
+  align-items: center;
 }
 .log-out {
   cursor: pointer;
