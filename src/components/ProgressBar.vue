@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
-import { handlePlayTime } from '../utils/index'
+import { handlePlayTime } from '../utils/time'
 interface ElEvent extends Event {
   clientY?: number;
   clientX?: number;

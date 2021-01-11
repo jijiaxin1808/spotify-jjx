@@ -23,12 +23,4 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error)
 })
 
-export function handlePlayTime (time: number): string {
-  if (!time) return '0:00'
-  time = Math.round(time / 1000)
-  const sec = time % 60
-  const min = Math.floor(time / 60)
-  return `${min || '0'}:${sec > 9 ? sec : '0' + sec}`
-}
-
 export { axios }

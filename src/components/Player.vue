@@ -39,7 +39,7 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { getAccessToken } from '../utils/access'
 import { debounce } from '../utils/debounce'
-import { handlePlayTime } from '../utils/index'
+import { handlePlayTime } from '../utils/time'
 import ProgressBar from './ProgressBar.vue'
 
 interface PlayerResponce {
