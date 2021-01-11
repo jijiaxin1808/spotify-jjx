@@ -1,5 +1,17 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png">
+    <Player />
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import Player from '@/components/Player.vue'
+@Component({
+  components: {
+    Player
+  }
+})
+export default class Home extends Vue {}
+</script>

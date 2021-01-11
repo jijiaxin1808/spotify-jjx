@@ -7,5 +7,13 @@ export function getAccessToken () {
 }
 
 export function hasAccessToken () {
-  return !!localStorage.getItem('spotify_access_token')
+  return localStorage.getItem('spotify_access_token')
+}
+
+export function setMeInfo (info: any) {
+  localStorage.setItem('spotify_me_info', JSON.stringify(info))
+}
+
+export function getMeinfo () {
+  return localStorage.getItem('spotify_me_info')
 }
