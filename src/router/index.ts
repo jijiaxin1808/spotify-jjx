@@ -23,10 +23,35 @@ const routes: Array<RouteConfig> = [
     component: Player
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
-  }
+    path: '/playlist/:id',
+    name: 'playlist',
+    component: () => import('../views/Playlist.vue')
+  },
+  {
+  path: '/artists/:id',
+  name: 'artists',
+  component: () => import('../views/Artists.vue')
+},
+{
+  path: '/albums/:id',
+  name: 'albums',
+  component: () => import('../views/Albums.vue')
+},
+{
+  path: '/usersPlaylist/:id',
+  name: 'usersPlaylist',
+  component: () => import('../views/UsersPlaylist.vue')
+},
+{
+  path: '/search/:id',
+  name: 'search',
+  component: () => import('../views/Search.vue')
+},
+{
+  path: '/user/:id',
+  name: 'user',
+  component: () => import('../views/User.vue')
+}
 ]
 
 const router = new VueRouter({
