@@ -2,12 +2,12 @@
   <div>
     <div class="album-info">
       <img :src="imgSrc" width="200px" height="200px"/>
-      <div class="playlist-desc">
+      <div class="album-desc">
         album
         <h1>{{albumName}}</h1>
       </div>
-      <div>Created by:  <span @click="toUser(artistID)" class="user-link">{{artistName}}</span> .{{totalSongs}} songs</div>
     </div>
+    <div class="creator">Created by:  <span @click="toUser(artistID)" class="user-link">{{artistName}}</span> .{{totalSongs}} songs</div>
     <Songs :songsData="songsData" :type="'albums'"/>
   </div>
 </template>
@@ -60,3 +60,12 @@ export default class Albums extends Vue {
   }
 }
 </script>
+<style lang="less">
+.album-info {
+  margin: 20px;
+  display: flex;
+}
+.album-desc {
+  margin: 20px;
+}
+</style>

@@ -8,8 +8,8 @@
         <p>{{desc}}</p>
         <div>{{total}} followers</div>
       </div>
-      <div>Created by:  <span @click="toUser(creatorId)" class="user-link">{{creator}}</span> .{{totalSongs}} songs</div>
     </div>
+    <div class="creator">Created by:  <span @click="toUser(creatorId)" class="user-link">{{creator}}</span> .{{totalSongs}} songs</div>
     <Songs :songsData="songsData" :type="'playlist'"/>
   </div>
 </template>
@@ -81,5 +81,13 @@ export default class Playlist extends Vue {
 }
 .user-link {
   color: white;
+}
+.creator {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  color: #88898c;
+  border: solid #393b40;
+  border-width: 1px 0;
+  padding: 8px 0;
 }
 </style>
