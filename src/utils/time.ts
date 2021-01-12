@@ -6,7 +6,7 @@ export function handleTimeAgo (time: string): string {
   const hour = minute * 60
   const day = hour * 24
   const month = day * 30
-  const year = month * 30
+  const year = month * 12
   const diffValue = timeNow.valueOf() - timePublish.valueOf()
   const diffMonth = diffValue / month
   const diffYear = diffValue / year
