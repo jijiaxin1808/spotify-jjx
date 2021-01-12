@@ -2,9 +2,10 @@
 <div>
   <Header />
   <div class="main-page">
-  <PlayLists />
-  <router-view />
-    </div>
+    <PlayLists />
+    <router-view />
+  </div>
+  <Player/>
 </div>
 
 </template>
@@ -12,10 +13,12 @@
 import { Component, Vue } from 'vue-property-decorator'
 import Header from '../components/Header.vue'
 import PlayLists from '../components/playLists.vue'
+import Player from '../components/Player.vue'
 @Component({
   components: {
     Header,
-    PlayLists
+    PlayLists,
+    Player
   }
 })
 export default class Home extends Vue {
