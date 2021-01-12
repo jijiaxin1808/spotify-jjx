@@ -58,7 +58,8 @@ get isAlbums () {
 </script>
 <style lang="less" scoped>
 .song {
-  margin: 10px;
+  border-top: 1px solid #393b40;
+  margin: 10px 20px 0 20px;
   display: flex;
   div {
     margin: 10px;
@@ -74,8 +75,10 @@ get isAlbums () {
 }
 
 .title {
-  margin: 10px;
+  margin: 0 20px;
   display: flex;
+  font-size: 14px;
+  color: #393b40;
   div {
     margin: 10px;
   }
