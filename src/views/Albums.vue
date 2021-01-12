@@ -56,7 +56,7 @@ export default class Albums extends Vue {
   }
 
   toUser (id: string) {
-    this.$router.push({ path: `/user/${id}` })
+    this.$router.push({ path: `/artists/${id}` })
   }
 }
 </script>
@@ -67,5 +67,12 @@ export default class Albums extends Vue {
 }
 .album-desc {
   margin: 20px;
+}
+.creator {
+  color: #393b40;
+  margin-left: 20px;
+}
+.user-link {
+  color: white;
 }
 </style>
