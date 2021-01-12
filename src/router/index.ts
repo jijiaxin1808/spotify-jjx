@@ -16,6 +16,16 @@ const routes: Array<RouteConfig> = [
         path: 'playlist/:id',
         name: 'playlist',
         component: () => import('../views/PlayList.vue')
+      },
+      {
+        path: '/user/:id',
+        name: 'user',
+        component: () => import('../views/User.vue')
+      },
+      {
+        path: '/albums/:id',
+        name: 'albums',
+        component: () => import('../views/Albums.vue')
       }
     ]
   },
@@ -35,11 +45,6 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/Artists.vue')
   },
   {
-    path: '/albums/:id',
-    name: 'albums',
-    component: () => import('../views/Albums.vue')
-  },
-  {
     path: '/usersPlaylist/:id',
     name: 'usersPlaylist',
     component: () => import('../views/UserPlaylist.vue')
@@ -48,11 +53,6 @@ const routes: Array<RouteConfig> = [
     path: '/search/:id',
     name: 'search',
     component: () => import('../views/Search.vue')
-  },
-  {
-    path: '/user/:id',
-    name: 'user',
-    component: () => import('../views/User.vue')
   }
 ]
 

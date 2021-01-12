@@ -10,7 +10,7 @@
       </div>
       <div>Created by:  <span @click="toUser(creatorId)" class="user-link">{{creator}}</span> .{{totalSongs}} songs</div>
     </div>
-    <Songs :songsData="songsData"/>
+    <Songs :songsData="songsData" :type="'playlist'"/>
   </div>
 </template>
 <script lang="ts">
@@ -23,7 +23,7 @@ import Songs from '../components/Songs.vue'
 })
 export default class Playlist extends Vue {
   public id = ''
-  public songsData = []
+  public songs = []
   imgSrc = ''
   name = ''
   desc = ''
@@ -35,13 +35,24 @@ export default class Playlist extends Vue {
     this.init()
   }
 
+  get songsData () {
+    return this.songs.map((item: any) => ({
+      addedAt: item.added_at,
+      name: item.track.name,
+      artists: item.track.artists,
+      albumName: item.track.album.name,
+      time: item.track.duration_ms,
+      id: item.track.id,
+      albumId: item.track.album.id
+    }))
+  }
+
   @Watch('$route')
   init () {
     this.id = this.$route.params.id
     this.$axios.get(`https://api.spotify.com/v1/playlists/${this.id}/tracks?offset=0&limit=100`).then(res => {
-      this.songsData = res.data.items
-      this.totalSongs = this.songsData.length
-      // console.log(res.data.items, this.songsData)
+      this.songs = res.data.items
+      this.totalSongs = this.songs.length
     })
     this.$axios.get(`https://api.spotify.com/v1/users/spotify/playlists/${this.id}`).then(res => {
       // console.log(res)

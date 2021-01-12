@@ -2,25 +2,23 @@
   <div class="songs">
     <div class="title">
       <div class="track">TRACK</div>
-      <div class="artist">ARTIST</div>
+      <div class="artist" v-if="isPlaylist">ARTIST</div>
       <div class="time">TIME</div>
-      <div class="album">ALBUM</div>
-      <div class="added">ADDED</div>
+      <div class="album" v-if="isPlaylist">ALBUM</div>
+      <div class="added" v-if="isPlaylist">ADDED</div>
     </div>
-
-    <template v-for="song in d">
+    <template v-for="song in songsData">
       <div :key="song.id" class="song">
         <div class="track" @click="playMusic(song.id)">{{song.name}}</div>
-        <div class="artist">
+        <div class="artist" v-if="isPlaylist">
         <template v-for="artist in song.artists">
-          <span @click="toArtists(artist.id)" :key="artist.id">{{artist.name}}</span>
+          <span  @click="toArtists(artist.id)" :key="artist.id">{{artist.name}}</span>
         </template>
         </div>
         <div class="time">{{handlePlayTime(song.time)}}</div>
-        <div class="album" @click="toAlbums(song.albumId)">{{song.albumName}}</div>
-        <div class="added">{{handleTimeAgo(song.addedAt)}}</div>
+        <div class="album" v-if="isPlaylist" @click="toAlbums(song.albumId)">{{song.albumName}}</div>
+        <div class="added" v-if="isPlaylist">{{handleTimeAgo(song.addedAt)}}</div>
       </div>
-
     </template>
   </div>
 </template>
@@ -28,30 +26,18 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { handleTimeAgo, handlePlayTime } from '../utils/time'
+enum songsType {
+  playlist = 'playlist',
+  init = '',
+  albums = 'albums'
+}
 @Component
 export default class Songs extends Vue {
 @Prop() songsData: any
-// public d = []
-created () {
-  // console.log('created')
-
-  // console.log(this.d, 'data')
-}
 
 handleTimeAgo = handleTimeAgo
 handlePlayTime = handlePlayTime
-get d () {
-  return this.songsData.map((item: any) => ({
-    addedAt: item.added_at,
-    name: item.track.name,
-    artists: item.track.artists,
-    albumName: item.track.album.name,
-    time: item.track.duration_ms,
-    id: item.track.id,
-    albumId: item.track.album.id
-  }))
-}
-
+@Prop() type!: string
 toArtists (id: string) {
   this.$router.push({ path: `/artists/${id}` })
 }
@@ -59,7 +45,16 @@ toArtists (id: string) {
 toAlbums (id: string) {
   this.$router.push({ path: `/albums/${id}` })
 }
+
+get isPlaylist () {
+  return this.type === 'playlist'
 }
+
+get isAlbums () {
+  return this.type === 'albums'
+}
+}
+
 </script>
 <style lang="less" scoped>
 .song {
