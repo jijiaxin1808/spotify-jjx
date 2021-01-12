@@ -2,21 +2,21 @@
   <div class="songs">
     <div class="title">
       <div class="track">TRACK</div>
-      <div class="artist" v-if="isPlaylist">ARTIST</div>
+      <div class="artists" v-if="isPlaylist">ARTIST</div>
       <div class="time">TIME</div>
-      <div class="album" v-if="isPlaylist">ALBUM</div>
+      <div class="album" v-if="isPlaylist || isArtist">ALBUM</div>
       <div class="added" v-if="isPlaylist">ADDED</div>
     </div>
     <template v-for="song in songsData">
       <div :key="song.id" class="song">
         <div class="track" @click="playMusic(song.id)">{{song.name}}</div>
-        <div class="artist" v-if="isPlaylist">
+        <div class="artists" v-if="isPlaylist">
         <template v-for="artist in song.artists">
-          <span  @click="toArtists(artist.id)" :key="artist.id">{{artist.name}}</span>
+          <span class="artist"  @click="toArtists(artist.id)" :key="artist.id">{{artist.name}}</span>
         </template>
         </div>
         <div class="time">{{handlePlayTime(song.time)}}</div>
-        <div class="album" v-if="isPlaylist" @click="toAlbums(song.albumId)">{{song.albumName}}</div>
+        <div class="album" v-if="isPlaylist || isArtist" @click="toAlbums(song.albumId)">{{song.albumName}}</div>
         <div class="added" v-if="isPlaylist">{{handleTimeAgo(song.addedAt)}}</div>
       </div>
     </template>
@@ -53,6 +53,10 @@ get isPlaylist () {
 get isAlbums () {
   return this.type === 'albums'
 }
+
+get isArtist () {
+  return this.type === 'artist'
+}
 }
 
 </script>
@@ -86,11 +90,16 @@ get isAlbums () {
 .track {
   width: 400px;
 }
-.artist {
+.artists {
   width: 150px;
-      &:hover {
-    text-decoration: underline;
+  .artist {
+    margin-right: 5px;
+    display: block;
+    &:hover {
+      text-decoration: underline;
+    }
   }
+
 }
 .time {
   width: 100px;

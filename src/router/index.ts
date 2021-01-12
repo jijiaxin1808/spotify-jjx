@@ -26,6 +26,11 @@ const routes: Array<RouteConfig> = [
         path: '/albums/:id',
         name: 'albums',
         component: () => import('../views/Albums.vue')
+      },
+      {
+        path: '/artists/:id',
+        name: 'artists',
+        component: () => import('../views/Artists.vue')
       }
     ]
   },
@@ -38,11 +43,6 @@ const routes: Array<RouteConfig> = [
     path: '/player',
     name: 'player',
     component: Player
-  },
-  {
-    path: '/artists/:id',
-    name: 'artists',
-    component: () => import('../views/Artists.vue')
   },
   {
     path: '/usersPlaylist/:id',
