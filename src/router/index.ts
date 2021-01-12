@@ -10,7 +10,14 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: 'playlist/:id',
+        name: 'playlist',
+        component: () => import('../views/PlayList.vue')
+      }
+    ]
   },
   {
     path: '/login',
@@ -21,11 +28,6 @@ const routes: Array<RouteConfig> = [
     path: '/player',
     name: 'player',
     component: Player
-  },
-  {
-    path: '/playlist/:id',
-    name: 'playlist',
-    component: () => import('../views/PlayList.vue')
   },
   {
     path: '/artists/:id',

@@ -30,7 +30,6 @@ export default class PlayLists extends Vue {
   }
 
   toPlayList (id: string) {
-    console.log(id)
     this.$router.push({ path: `/playlist/${id}` })
   }
 }

@@ -11,7 +11,6 @@ export default class Login extends Vue {
   id!: string
   created () {
     this.id = this.$route.params.id
-    console.log(this.id)
   }
 }
 </script>

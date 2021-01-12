@@ -11,7 +11,7 @@ export default class Login extends Vue {
     const { code, state } = this.$route.query
     if (!code || !state) return
     this.$axios.post(`http://localhost:8888/callback?code=${code}&state=${state}`).then(res => {
-      setAccessToken(res.data.data.access_token)
+      setAccessToken(res.data.access_token)
       this.$axios.get('https://api.spotify.com/v1/me').then(res => {
         if (res.status === 200) {
           setMeInfo(res.data)
@@ -23,7 +23,7 @@ export default class Login extends Vue {
 
   @Watch('$route', { deep: true })
   getToken () {
-    console.log('route变化了')
+    // console.log('route变化了')
   }
 
   private auth () {

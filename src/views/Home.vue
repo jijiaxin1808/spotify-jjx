@@ -1,7 +1,10 @@
 <template>
 <div>
   <Header />
+  <div class="main-page">
   <PlayLists />
+  <router-view />
+    </div>
 </div>
 
 </template>
@@ -15,10 +18,12 @@ import PlayLists from '../components/playLists.vue'
     PlayLists
   }
 })
-export default class Login extends Vue {
-  constructor () {
-    super()
-    console.log('kkx')
-  }
+export default class Home extends Vue {
 }
 </script>
+<style lang="less" scoped>
+.main-page {
+  display: flex;
+  width: 100%;
+}
+</style>

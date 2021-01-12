@@ -72,7 +72,6 @@ export default class Player extends Vue {
   }
 
   get playBarPosition () {
-    console.log(this.position, this.duration)
     return this.position / (this.duration | 1)
   }
 
@@ -110,7 +109,7 @@ export default class Player extends Vue {
   getState () {
     if (!this.loaded) return null
     this.player.getCurrentState().then((state: any) => {
-      this.log && console.log(state)
+      // this.log && console.log(state)
       if (!state) return
 
       this.paused = state.paused
@@ -123,7 +122,7 @@ export default class Player extends Vue {
     if (!this.loaded) return null
     this.player.getVolume().then((volume: number) => {
       const volPercentage = volume * 100
-      console.log(`The volume of the player is ${volPercentage}%`)
+      // console.logog(`The volume of the player is ${volPercentage}%`)
     }).catch((err: any) => console.log(err))
   }
 
@@ -135,7 +134,7 @@ export default class Player extends Vue {
 
   debouncedSetvol = debounce((player, volume) => {
     if (!player) return null
-    console.log(player)
+    // console.logog(player)
     player.setVolume(volume * 0.01)
   }, 500)
 
@@ -146,15 +145,15 @@ export default class Player extends Vue {
 
   handlePlayBar () {
     const playBar = this.$refs.bar as StyleElement
-    console.log(playBar)
+    // console.logog(playBar)
     playBar.addEventListener('click', function (e) {
-      console.log(e)
+      // console.logog(e)
     })
   }
 
   extend () {
     const extendImg = this.$refs.extendImg as StyleElement
-    console.log(extendImg.clientHeight)
+    // console.logog(extendImg.clientHeight)
     if (!extendImg.clientHeight) {
       extendImg.style.display = 'block'
       requestAnimationFrame(() => {
@@ -178,20 +177,19 @@ export default class Player extends Vue {
 
   pause () {
     this.player.pause().then(() => {
-      console.log('Paused!')
+      // console.logog('Paused!')
       this.paused = true
     })
   }
 
   resume () {
     this.player.resume().then(() => {
-      console.log('resume!')
+      // console.logog('resume!')
       this.paused = false
     })
   }
 
   changePosition (position: number) {
-    // console.log('cb-position', position)
     this.setPosition(position * 100)
   }
 }

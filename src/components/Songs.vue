@@ -1,22 +1,24 @@
 <template>
   <div class="songs">
-          <div>TRACK</div>
-          <div>ARTIST</div>
-          <div>TIME</div>
-          <div>ALBUM</div>
-          <div>ADDED</div>
+    <div class="title">
+      <div class="track">TRACK</div>
+      <div class="artist">ARTIST</div>
+      <div class="time">TIME</div>
+      <div class="album">ALBUM</div>
+      <div class="added">ADDED</div>
+    </div>
+
     <template v-for="song in d">
       <div :key="song.id" class="song">
-        <div @click="playMusic(song.id)">{{song.name}}</div>
-        <div>
-          artists
+        <div class="track" @click="playMusic(song.id)">{{song.name}}</div>
+        <div class="artist">
         <template v-for="artist in song.artists">
           <span @click="toArtists(artist.id)" :key="artist.id">{{artist.name}}</span>
         </template>
         </div>
-        <div>{{handlePlayTime(song.time)}}</div>
-        <div @click="toAlbums(song.albumId)">{{song.albumName}}</div>
-        <div>{{handleTimeAgo(song.addedAt)}}</div>
+        <div class="time">{{handlePlayTime(song.time)}}</div>
+        <div class="album" @click="toAlbums(song.albumId)">{{song.albumName}}</div>
+        <div class="added">{{handleTimeAgo(song.addedAt)}}</div>
       </div>
 
     </template>
@@ -31,9 +33,9 @@ export default class Songs extends Vue {
 @Prop() songsData: any
 // public d = []
 created () {
-  console.log('created')
+  // console.log('created')
 
-  console.log(this.d, 'data')
+  // console.log(this.d, 'data')
 }
 
 handleTimeAgo = handleTimeAgo
@@ -61,9 +63,47 @@ toAlbums (id: string) {
 </script>
 <style lang="less" scoped>
 .song {
+  margin: 10px;
   display: flex;
+  div {
+    margin: 10px;
+  }
+  .track.artist.album {
+    color: red;
+
+  }
 }
-div {
-  margin: 5px;
+
+.songs {
+  width: 1400px;
+}
+
+.title {
+  margin: 10px;
+  display: flex;
+  div {
+    margin: 10px;
+  }
+}
+.track {
+  width: 400px;
+}
+.artist {
+  width: 150px;
+      &:hover {
+    text-decoration: underline;
+  }
+}
+.time {
+  width: 100px;
+}
+.album {
+  width: 400px;
+      &:hover {
+    text-decoration: underline;
+  }
+}
+.added {
+  width: 100px;
 }
 </style>

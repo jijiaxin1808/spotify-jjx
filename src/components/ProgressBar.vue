@@ -53,7 +53,7 @@ export default class ProgressBar extends Vue {
   }
 
   cb (position: number) {
-    console.log('positionchange')
+    // console.log('positionchange')
     this.onChange(position)
   }
 
